@@ -163,26 +163,6 @@
         }
         .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4); filter: brightness(1.1); }
 
-        .hero-cta-group { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; align-items: center; }
-        .btn-simulate {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--gold-solid);
-            font-weight: 700;
-            padding: 16px 36px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1rem;
-            border: 2px solid var(--gold-solid);
-            transition: all 0.3s ease;
-        }
-        .btn-simulate svg { width: 18px; height: 18px; fill: var(--gold-solid); transition: fill 0.3s ease; }
-        .btn-simulate:hover { background: var(--gold-solid); color: #0F0F0F; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25); }
-        .btn-simulate:hover svg { fill: #0F0F0F; }
-
         /* ================= FOTO DA BANCADA ================= */
         .shop-photo { width: 100%; padding: 20px 0 60px; text-align: center; background-color: var(--bg-dark); }
         .shop-photo-container { position: relative; max-width: 900px; margin: 0 auto; }
@@ -197,47 +177,6 @@
         .icon-box svg { width: 100%; height: 100%; fill: url(#goldGradientDef); }
         .feature-card h3 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 15px; color: var(--text-primary); }
         .feature-card p { color: var(--text-secondary); font-size: 0.95rem; }
-
-        /* ================= COMPRAMOS POR PESO ================= */
-        .by-weight { padding: 90px 0; background-color: var(--bg-dark); }
-        .by-weight .section-header { text-align: center; max-width: 680px; margin: 0 auto 50px; }
-        .by-weight .eyebrow { display: block; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-solid); margin-bottom: 12px; }
-        .by-weight h2 { font-family: var(--font-title); font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 16px; color: var(--text-primary); }
-        .by-weight .section-header p { color: var(--text-secondary); font-size: 1rem; }
-
-        .by-weight-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
-
-        .weight-explainer p { color: var(--text-secondary); margin-bottom: 18px; font-size: 0.98rem; }
-        .weight-explainer strong { color: var(--gold-solid); font-weight: 600; }
-
-        .accepted-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 26px 0 0; }
-        .accepted-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg-card);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 8px;
-            padding: 12px 14px;
-            font-size: 0.86rem;
-            color: var(--text-primary);
-        }
-        .accepted-item svg { width: 18px; height: 18px; fill: var(--gold-solid); flex-shrink: 0; }
-
-        .simulate-panel {
-            background: var(--bg-card);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            border-radius: 16px;
-            padding: 44px 32px;
-            text-align: center;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.45);
-        }
-        .simulate-panel .panel-icon { width: 46px; height: 46px; margin: 0 auto 18px; }
-        .simulate-panel .panel-icon svg { width: 100%; height: 100%; fill: url(#goldGradientDef); }
-        .simulate-panel h3 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 12px; color: var(--text-primary); }
-        .simulate-panel p { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 26px; }
-        .simulate-panel .btn-gold { width: 100%; }
-        .simulate-panel .panel-note { margin-top: 16px; font-size: 0.75rem; color: #777; }
 
         /* ================= DEPOIMENTOS (MARQUEE AUTOMÁTICO) ================= */
         .testimonials { padding: 80px 0; background-color: var(--bg-dark); overflow: hidden; }
@@ -365,16 +304,6 @@
             /* Ajuste dos botões flutuantes no mobile */
             .float-btn { width: 50px; height: 50px; }
             .float-btn svg { width: 28px; height: 28px; }
-
-            /* Grupo de CTAs do hero */
-            .hero-cta-group { flex-direction: column; width: 100%; }
-            .btn-simulate { width: 100%; max-width: 300px; padding: 15px 20px; font-size: 0.9rem; justify-content: center; }
-
-            /* Seção Compramos por Peso */
-            .by-weight { padding: 60px 0; }
-            .by-weight-grid { grid-template-columns: 1fr; gap: 40px; }
-            .accepted-list { grid-template-columns: 1fr; }
-            .simulate-panel { padding: 34px 22px; }
         }
     </style>
 </head>
@@ -406,15 +335,9 @@
                 <h1 class="text-gold">Compra e Venda de Ouro<br>em Ourinhos com Segurança</h1>
                 <p>Avaliação 5 Estrelas no Google. Pagamento à vista e imediato. Localização privilegiada e segura no Mercadão Municipal.</p>
                 
-                <div class="hero-cta-group">
-                    <a href="https://wa.me/5514997692967?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20ouro." class="btn-gold" target="_blank">
-                        Avaliar meu Ouro no WhatsApp
-                    </a>
-                    <a href="https://goldmanmetais.com.br/simulador/" class="btn-simulate" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
-                        Simular Venda
-                    </a>
-                </div>
+                <a href="https://wa.me/5514997692967?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20ouro." class="btn-gold" target="_blank">
+                    Avaliar meu Ouro no WhatsApp
+                </a>
             </div>
         </section>
 
@@ -455,65 +378,6 @@
                         </div>
                         <h3>Avaliação 5 Estrelas</h3>
                         <p>Mais de 100 clientes satisfeitos em Ourinhos e região. A melhor cotação de ouro da cidade comprovada.</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="by-weight">
-            <div class="container">
-
-                <div class="section-header">
-                    <span class="eyebrow">Como funciona a avaliação</span>
-                    <h2 class="text-gold">Compramos ouro com total transparência</h2>
-                    <p>O valor da sua peça não depende de marca, modelo ou desgaste.</p>
-                </div>
-
-                <div class="by-weight-grid">
-
-                    <div class="weight-explainer">
-                        <p><strong>Gramas × cotação do dia = valor da sua peça.</strong> É esse o cálculo que fazemos, sempre à vista e com a pesagem acontecendo diante de você, sem caixa preta.</p>
-                        <p>Trabalhamos principalmente com <strong>ouro 18k</strong>, o padrão mais comum em joalherias no Brasil. Mesmo peças quebradas, incompletas ou fora de moda têm o mesmo valor por grama — o metal continua valendo.</p>
-
-                        <div class="accepted-list">
-                            <div class="accepted-item">
-                                <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                                Correntes e cordões
-                            </div>
-                            <div class="accepted-item">
-                                <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                                Anéis e alianças
-                            </div>
-                            <div class="accepted-item">
-                                <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                                Pulseiras e brincos
-                            </div>
-                            <div class="accepted-item">
-                                <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                                Ouro quebrado ou avariado
-                            </div>
-                            <div class="accepted-item">
-                                <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                                Ouro odontológico
-                            </div>
-                            <div class="accepted-item">
-                                <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                                Moedas e barras
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="simulate-panel">
-                        <div class="panel-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
-                        </div>
-                        <h3>Simule agora, sem compromisso</h3>
-                        <p>Informe quantas gramas tem a sua peça e veja na hora uma estimativa do valor, com a cotação atualizada do dia.</p>
-                        <a href="https://goldmanmetais.com.br/simulador/" class="btn-gold" target="_blank" rel="noopener">
-                            Simular Valor do Meu Ouro
-                        </a>
-                        <p class="panel-note">Valor sujeito à avaliação presencial e à condição da peça.</p>
                     </div>
 
                 </div>
