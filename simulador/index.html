@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../assets/images/logo-goldman-png.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo-goldman-png.png">
+
+    <title>Simulador de Venda de Ouro 18k | Goldman Metais Ourinhos</title>
+    <meta name="description" content="Simule agora quanto você pode receber pela venda do seu ouro 18k em Ourinhos. Cotação atualizada, cálculo instantâneo e atendimento seguro no Mercadão Municipal.">
+    <meta name="robots" content="noindex, follow">
+
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Simulador de Venda de Ouro | Goldman Metais">
+    <meta property="og:description" content="Descubra em segundos quanto vale o seu ouro 18k.">
+    <meta property="og:url" content="https://www.goldmanmetais.com.br/simulador">
+    <meta property="og:site_name" content="Goldman Metais Preciosos">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= VARIÁVEIS (mesma identidade do site principal) ================= */
+        :root {
+            --bg-dark: #0F0F0F;
+            --bg-card: #1A1A1A;
+            --bg-card-hover: #212121;
+            --text-primary: #F4F4F4;
+            --text-secondary: #CCCCCC;
+
+            --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%);
+            --gold-solid: #D4AF37;
+
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #0F0F0F 55%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+
+        .text-gold {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .container { max-width: 640px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        /* ================= HEADER ================= */
+        header {
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 640px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-family: var(--font-title); font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .back-link { font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+        .back-link:hover { color: var(--gold-solid); }
+        .back-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+        /* ================= MAIN ================= */
+        main { flex: 1; padding: 50px 0 40px; }
+
+        .page-title { text-align: center; margin-bottom: 8px; }
+        .eyebrow {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-solid);
+            margin-bottom: 12px;
+        }
+        .page-title h1 {
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 6vw, 2.4rem);
+            line-height: 1.25;
+        }
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 460px;
+            margin: 14px auto 36px;
+        }
+
+        /* ================= CARD DA CALCULADORA ================= */
+        .calc-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 32px 26px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+        }
+
+        .price-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 50px;
+            padding: 10px 18px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 0 auto 28px;
+            width: fit-content;
+            text-align: center;
+        }
+        .price-badge strong { color: var(--gold-solid); font-weight: 700; }
+
+        .field-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper { position: relative; margin-bottom: 26px; }
+        .input-wrapper input {
+            width: 100%;
+            background: #0F0F0F;
+            border: 2px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 60px 16px 18px;
+            font-family: var(--font-body);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.25s ease;
+            -moz-appearance: textfield;
+        }
+        .input-wrapper input::-webkit-outer-spin-button,
+        .input-wrapper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .input-wrapper input:focus { border-color: var(--gold-solid); }
+        .input-wrapper input::placeholder { color: #555; font-weight: 400; }
+        .input-suffix {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-solid);
+            font-weight: 700;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 26px 16px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(212,175,55,0.10) 0%, rgba(212,175,55,0.02) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            margin-bottom: 24px;
+        }
+        .result-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        #resultado {
+            font-family: var(--font-title);
+            font-size: clamp(2.2rem, 9vw, 2.8rem);
+            font-weight: 700;
+            display: inline-block;
+        }
+        #resultado.pulse { animation: pulseValue 0.35s ease; }
+        @keyframes pulseValue {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: #25d366;
+            color: #0a0a0a;
+            font-weight: 700;
+            padding: 17px 20px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
+        .btn-whatsapp svg { width: 22px; height: 22px; fill: #0a0a0a; }
+
+        /* ================= DISCLAIMER ================= */
+        .disclaimer {
+            margin-top: 22px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            font-size: 0.78rem;
+            line-height: 1.55;
+            color: #999;
+            text-align: center;
+        }
+        .disclaimer strong { color: #b8b8b8; }
+
+        /* ================= FOOTER ================= */
+        footer {
+            padding: 26px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        .copyright { font-size: 0.75rem; color: #555; }
+        .credits-link { color: #444; font-weight: 600; }
+        .credits-link:hover { color: var(--gold-solid); }
+
+        @media (max-width: 480px) {
+            .calc-card { padding: 26px 18px; }
+            .price-badge { font-size: 0.78rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="https://www.goldmanmetais.com.br" class="logo text-gold">GOLDMAN</a>
+            <a href="https://www.goldmanmetais.com.br" class="back-link">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"/></svg>
+                Voltar ao site
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <div class="page-title">
+                <span class="eyebrow">Simulador de venda</span>
+                <h1 class="text-gold">Quanto vale o<br>seu ouro 18k?</h1>
+            </div>
+            <p class="page-subtitle">Informe o peso da sua peça e veja na hora uma estimativa do valor. Depois é só chamar no WhatsApp para agendar a avaliação presencial.</p>
+
+            <div class="calc-card">
+
+                <div class="price-badge">
+                    💰 Cotação do dia: <strong id="precoAtual">R$ 415,00</strong> por grama (ouro 18k)
+                </div>
+
+                <label class="field-label" for="gramas">Peso da peça</label>
+                <div class="input-wrapper">
+                    <input
+                        type="number"
+                        id="gramas"
+                        inputmode="decimal"
+                        min="0"
+                        step="0.1"
+                        placeholder="Ex: 15"
+                        oninput="calcular()"
+                        autocomplete="off">
+                    <span class="input-suffix">gramas</span>
+                </div>
+
+                <div class="result-box">
+                    <div class="result-label">Valor estimado</div>
+                    <div id="resultado" class="text-gold">R$ 0,00</div>
+                </div>
+
+                <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    Falar no WhatsApp
+                </a>
+
+                <div class="disclaimer">
+                    <strong>Atenção:</strong> valor meramente estimado para peças de ouro 18k. O preço final está sujeito à avaliação presencial e pode variar conforme a condição, pureza e características da joia/peça.
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">
+                © 2026 Goldman Metais · <a href="https://siteprofissional.pro/" target="_blank" rel="noopener" class="credits-link">siteprofissional.pro</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        /* =========================================================
+           CONFIGURAÇÃO MANUAL — edite aqui, salve, git add / commit / push
+           ========================================================= */
+        const PRECO_GRAMA = 415.00;      // R$ por grama — ouro 18k
+        const NUMERO_WHATSAPP = '5514997692967';
+        /* ========================================================= */
+
+        const inputGramas = document.getElementById('gramas');
+        const resultadoEl = document.getElementById('resultado');
+        const precoAtualEl = document.getElementById('precoAtual');
+        const btnWhatsapp = document.getElementById('btnWhatsapp');
+
+        function formatarMoeda(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function montarLinkWhatsapp(gramas, total) {
+            let mensagem;
+            if (gramas > 0) {
+                mensagem = `Oi, vim pelo simulador e quero fazer a venda do meu ouro. ` +
+                           `Tenho aproximadamente ${gramas.toLocaleString('pt-BR')}g ` +
+                           `(estimativa de ${formatarMoeda(total)}) e gostaria de agendar uma avaliação.`;
+            } else {
+                mensagem = 'Oi, vim pelo simulador e quero fazer a venda do meu ouro.';
+            }
+            return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+        }
+
+        function calcular() {
+            const bruto = inputGramas.value.replace(',', '.');
+            const gramas = parseFloat(bruto) || 0;
+            const total = gramas * PRECO_GRAMA;
+
+            resultadoEl.textContent = formatarMoeda(total);
+            resultadoEl.classList.remove('pulse');
+            void resultadoEl.offsetWidth; // reinicia a animação
+            resultadoEl.classList.add('pulse');
+
+            btnWhatsapp.href = montarLinkWhatsapp(gramas, total);
+        }
+
+        // Inicialização
+        precoAtualEl.textContent = formatarMoeda(PRECO_GRAMA);
+        calcular();
+    </script>
+
+</body>
+</html>
